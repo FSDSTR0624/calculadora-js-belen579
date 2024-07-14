@@ -5,11 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="calculadora.css">
-    <script src="calculadora.js" defer></script>
+    <script src="index.js" defer></script>
 </head>
 <body>
+  
 
     <div id="calc">
+  
+        
         <input type="text" class="Input" id="display" value="0" disabled>
         <br>
         <button class="btn clear" onclick="clearDisplay()">CLEAR</button>
@@ -32,6 +35,9 @@
         <button class="btn cero" onclick="appendToDisplay('0')">0</button>
         <button class="btn punto" onclick="appendToDisplay('.')">.</button>
         <button class="btn igual" onclick="calculate()">=</button>
+      
+    
+
     </div>
     
 </body>

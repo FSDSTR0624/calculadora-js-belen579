@@ -2,9 +2,7 @@
 
 
 
-
 document.addEventListener('DOMContentLoaded', function() {
-    const buttons = document.querySelectorAll('.btn');
     const display = document.getElementById('display');
 
     let operando1 = 0;
@@ -21,7 +19,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-
     function clearDisplay() {
         display.value = "0";
         operando1 = 0;
@@ -29,70 +26,30 @@ document.addEventListener('DOMContentLoaded', function() {
         resultado = 0;
         operacion = null;
     }
-/*
-    function add(operand1, operand2) {
-        return operand1 + operand2;
+
+    function calculate() {
+        try {
+            display.value = evaluaroperacion(display.value);
+        } catch {
+            display.value = "Error";
+        }
     }
 
-    function subtract(operand1, operand2) {
-        return operand1 - operand2;
+
+
+    function evaluaroperacion(expresion){
+        if (!/^[0-9+\-*/(). ]+$/.test(expresion)) {
+            throw new Error("Carácteres no validos");
+        }
+
+    
+        return new Function('return ' + expresion)();
+
     }
 
-    function product(operand1, operand2) {
-        return operand1 * operand2;
-    }
-
-    function division(operand1, operand2) {
-        return operand1 / operand2;
-    }
-
-    function updateDisplay(value) {
-        display.value = value;
-    }
-
-   
-
-
-    buttons.forEach(button => {
-        button.addEventListener('click', function() {
-            const value = this.textContent;
-
-            if (value === 'CLEAR') {
-                clearDisplay();
-            } else if (value === '=') {
-                if (operacion && operando1 !== null) {
-                    operando2 = parseFloat(displayValue);
-                    switch (operacion) {
-                        case '+':
-                            resultado = add(operando1, operando2);
-                            break;
-                        case '-':
-                            resultado = subtract(operando1, operando2);
-                            break;
-                        case '*':
-                            resultado = product(operando1, operando2);
-                            break;
-                        case '/':
-                            resultado = division(operando1, operando2);
-                            break;
-                    }
-                    displayValue = resultado.toString();
-                    updateDisplay(displayValue);
-                    operando1 = resultado; // Guardar resultado como primer operando para futuras operaciones
-                    operando2 = 0;
-                    operacion = null;
-                }
-            } else if (['+', '-', '*', '/'].includes(value)) {
-                operacion = value;
-                operando1 = parseFloat(displayValue);
-                displayValue = '0'; // Limpiar display para el próximo número
-                updateDisplay(displayValue);
-            } else {
-                appendToDisplay(value);
-            }
-        });
-    });*/
-
+    window.appendToDisplay = appendToDisplay;
+    window.clearDisplay = clearDisplay;
+    window.calculate = calculate;
 });
 
 
